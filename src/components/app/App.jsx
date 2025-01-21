@@ -1,13 +1,14 @@
-import "./App.css";
+import './App.css';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
-function App() {
-  return (
-    <main>
-      <h1>Hello, world!</h1>
-      <p>This is a React application.</p>
-
-    </main>
-  );
+export default function App() {
+    return (
+        <>
+            <Header />
+            <Main />
+            <Footer />
+        </>
+    );
 }
-
-export default App;

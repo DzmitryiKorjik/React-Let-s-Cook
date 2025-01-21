@@ -1,6 +1,24 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: #fff;
+    --heading-color: #000;
+    --background-color: #08b099;
+    --border-color: #333;
+    --link-color: #007bff;
+    --hover-color: #17a2b8;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
