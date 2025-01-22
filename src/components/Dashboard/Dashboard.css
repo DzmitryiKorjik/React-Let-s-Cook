@@ -15,6 +15,8 @@
             margin-bottom: 10px;
             font-size: 2rem;
             color: var(--heading-color);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
         }
         label {
             margin-bottom: 10px;
@@ -55,5 +57,13 @@
         border-radius: 5px;
         padding: 10px;
         min-width: 50%;
+        h1 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            color: var(--heading-color);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
+        }
     }
 }

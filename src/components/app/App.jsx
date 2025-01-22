@@ -9,10 +9,12 @@ import Footer from '../Footer/Footer';
 export default function App() {
     const [view, setView] = useState('main'); // Statut pour la gestion des pages
     const [selectedRecette, setSelectedRecette] = useState(null); // Pour contrôler la sélection de la recette
+    const [searchQuery, setSearchQuery] = useState(''); // pour la recherche de la recette
 
     const showMain = () => {
         setView('main');
         setSelectedRecette(null); // Réinitialisation de la recette sélectionnée
+        setSearchQuery('');
     };
 
     const showDashboard = () => setView('dashboard');
@@ -21,12 +23,27 @@ export default function App() {
         setView('detailedCard');
     };
 
+    const handleSearch = (query) => {
+        setSearchQuery(query); // Mise à jour de la recherche
+    };
+
     return (
         <>
-            <Header onShowMain={showMain} onShowDashboard={showDashboard} />
+            <Header
+                view={view}
+                onShowMain={showMain}
+                onShowDashboard={showDashboard}
+                onSearch={handleSearch} // Transfert de la fonction de recherche
+                searchQuery={searchQuery} // Transmission de la requête de recherche à l'en-tête
+            />
 
             {/* Rendu des pages */}
-            {view === 'main' && <Main onSelectRecette={showDetailedCard} />}
+            {view === 'main' && (
+                <Main
+                    onSelectRecette={showDetailedCard}
+                    searchQuery={searchQuery}
+                />
+            )}
             {view === 'dashboard' && <Dashboard />}
             {view === 'detailedCard' && selectedRecette && (
                 <DetailedCard recette={selectedRecette} onBack={showMain} />
