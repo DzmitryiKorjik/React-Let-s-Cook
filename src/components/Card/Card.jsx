@@ -6,6 +6,7 @@ export default function Card({ recette, onClick }) {
                 src={recette.imageUrl}
                 alt={recette.title}
             />
+            <p className='card__category'>🏷️{recette.category}</p>
             <h2 className='card__title'>{recette.title}</h2>
             <p className='card__diff'>
                 <span>Difficulty :</span>

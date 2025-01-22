@@ -26,6 +26,18 @@ main {
                 transition: transform 0.6s ease;
             }
         }
+        .card__category {
+            position: absolute;
+            top: -8px;
+            right: 5px;
+            font-size: 14px;
+            background-color: var(--background-color);
+            padding: 0 2px 2px 0;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
+        }
         .card__title {
             margin: 0;
             font-size: 24px;

@@ -1,6 +1,7 @@
+import './DetailedCard.css';
 export default function DetailedCard({ recette, onBack }) {
     return (
-        <div className='card'>
+        <div className='detailed-card'>
             <button className='back-button' onClick={onBack}>
                 Retour
             </button>
