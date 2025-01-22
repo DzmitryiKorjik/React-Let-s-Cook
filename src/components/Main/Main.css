@@ -22,7 +22,7 @@ main {
             margin-bottom: 5px;
             &:hover {
                 cursor: pointer;
-                transform: scale(1.2);
+                transform: scale(1.1);
                 transition: transform 0.6s ease;
             }
         }
@@ -31,9 +31,11 @@ main {
             font-size: 24px;
             padding-left: 5px;
             color: var(--heading-colo);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
         }
         .card__diff {
-            margin: 0;
+            margin: 10px 0;
             font-size: 18px;
             padding: 0 7px;
             color: #bec344;
@@ -44,6 +46,8 @@ main {
             font-size: 16px;
             line-height: 1.2;
             color: var(--heading-colo);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
         }
         .card__lien {
             position: absolute;
@@ -51,10 +55,38 @@ main {
             right: 20px;
             text-decoration: none;
             color: #bec344;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
             &:hover {
                 color: #ffb700;
                 text-decoration: underline;
             }
         }
     }
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--text-color);
+    color: var(--background-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 20;
+    &:hover {
+        background-color: var(--hover-color);
+        color: var(--heading-color);
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+        transition: background-color 0.6s;
+    }
+}
+
+span {
+    color: #bec344;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
