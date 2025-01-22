@@ -1,5 +1,5 @@
 import './Main.css';
-import Recettes from '../../hooks/recettes.json';
+import Recettes from '../../data/recettes.json';
 
 function Card({ recette }) {
     return (

@@ -1,8 +1,8 @@
 import './Header.css';
 
-import logo from '../../assets/logo.svg';
-import userIcon from '../../assets/user.svg';
-import banner from '../../assets/banner.jpg';
+import logo from '../../assets/icons/logo.svg';
+import userIcon from '../../assets/icons/user.svg';
+import banner from '../../assets/img/banner.jpg';
 
 export default function Header() {
     return (

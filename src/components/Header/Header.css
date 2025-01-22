@@ -80,6 +80,7 @@ header {
         object-position: 100% 40%;
         position: absolute;
         opacity: 0.7;
+        box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.6);
     }
     h1 {
         font-size: 4rem;
