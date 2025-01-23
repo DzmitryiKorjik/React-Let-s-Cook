@@ -1,69 +1,95 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.recette .recette-title {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: var(--heading-color);
+}
+
 .recette {
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
-    .newRecette {
-        display: flex;
-        flex-direction: column;
+    .new-recette {
         margin-right: 20px;
         min-width: 50%;
         border: 1px solid var(--heading-color);
         border-radius: 5px;
         padding: 10px;
-        h1 {
-            margin: 0;
-            margin-bottom: 10px;
-            font-size: 2rem;
-            color: var(--heading-color);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
-                sans-serif;
-        }
-        label {
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--heading-color);
-        }
-        input,
-        textarea {
-            margin-bottom: 10px;
-            padding: 5px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-        }
-        button {
-            background-color: var(--text-color);
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: var(--background-color);
-            cursor: pointer;
-            margin-right: 20px;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            &:hover {
-                background-color: var(--hover-color);
+        form {
+            display: flex;
+            flex-direction: column;
+            h1 {
+                margin: 0;
+                margin-bottom: 10px;
+                font-size: 2rem;
                 color: var(--heading-color);
-                box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
-                transition: background-color 0.6s;
+            }
+            label {
+                margin-bottom: 10px;
+                font-weight: bold;
+                font-size: 1.2rem;
+                color: var(--heading-color);
+            }
+            input,
+            textarea {
+                margin-bottom: 10px;
+                padding: 5px;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2rem;
+            }
+            button {
+                background-color: var(--text-color);
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: var(--background-color);
+                cursor: pointer;
+                margin-right: 20px;
+                font-size: 1rem;
+                transition: background-color 0.3s;
+                &:hover {
+                    background-color: var(--hover-color);
+                    color: var(--heading-color);
+                    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+                    transition: background-color 0.6s;
+                }
             }
         }
     }
-    .allRecettes {
-        display: flex;
-        flex-direction: column;
+    .all-recettes {
         border: 1px solid var(--heading-color);
         border-radius: 5px;
         padding: 10px;
         min-width: 50%;
-        h1 {
-            margin: 0;
-            margin-bottom: 10px;
-            font-size: 2rem;
-            color: var(--heading-color);
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
-                sans-serif;
+        section {
+            .wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border: 1px solid var(--heading-color);
+                border-radius: 5px;
+                padding: 0 10px;
+                margin-top: 10px;
+                .all-recettes__title {
+                    margin: 5px 0 10px 0;
+                    font-size: 1.2rem;
+                    color: var(--heading-color);
+                }
+                .all-recettes__text {
+                    margin: 0 0 10px 0;
+                }
+            }
+            .all-recettes__liens {
+                display: flex;
+                .all-recettes__lien {
+                    margin: 10px 10px 0 0;
+                }
+            }
         }
     }
 }
