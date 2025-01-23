@@ -1,8 +1,65 @@
-# React + Vite
+# Let's Cook 🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**"Let's Cook"**
 
-Currently, two official plugins are available:
+-   Est une application web créée avec React pour gérer facilement des recettes de cuisine. Elle permet d'ajouter, modifier et supprimer des recettes, et sauvegarde les données localement à l'aide de `localStorage`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Fonctionnalités
+
+-   Ajouter une nouvelle recette avec :
+    -   Titre
+    -   Niveau de difficulté (1 à 5)
+    -   Catégorie
+    -   Description
+-   Modifier une recette existante
+-   Supprimer une recette
+-   Les données sont sauvegardées localement grâce à `localStorage`, garantissant une persistance même après actualisation de la page.
+
+## 🛠️ Technologies utilisées
+
+-   **React** : pour l'interface utilisateur
+-   **CSS** : pour le design et la mise en page
+-   **localStorage** : pour la sauvegarde des données
+
+## 📦 Installation
+
+1.  Clonez le dépôt :
+
+    ```bash
+    git clone https://github.com/DzmitryiKorjik/React-Let-s-Cook.git
+    ```
+
+2.  Naviguez dans le dossier du projet :
+
+    ```
+    cd React-Let-s-Cook
+    ```
+
+3.  Installez les dépendances :
+
+    ```
+    npm install
+    ```
+
+4.  Lancez l'application en mode développement :
+
+    ```
+    npm run dev
+    ```
+
+### 🖼️ Aperçu de l'application
+
+**Visualiser les recettes** :
+Visualiser les recettes de la base de données.
+
+**Ajouter une recette** :
+Une interface intuitive pour ajouter un titre, une difficulté, une catégorie et une description.
+
+**Liste des recettes** :
+Visualisez toutes vos recettes enregistrées avec des options pour les modifier ou les supprimer.
+
+## Auteur
+
+-   **Nom :** Mardovitch Dzmitryi
+-   **Formation :** Développement Web et Web Mobile.
+-   **Objectif :** Validation des compétences en création et déploiement d'applications web.
