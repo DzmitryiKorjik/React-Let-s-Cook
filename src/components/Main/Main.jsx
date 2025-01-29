@@ -1,5 +1,4 @@
 import './Main.css';
-import Recettes from '../../data/recettes.json';
 import Card from '../Card/Card';
 import DetailedCard from '../DetailedCard/DetailedCard';
 
@@ -7,9 +6,10 @@ export default function Main({
     onSelectRecette,
     selectedRecette,
     searchQuery,
+    recipes, // Ajout de la réception des recettes combinées
 }) {
     // Filtrer les recettes en fonction de la requête de recherche
-    const filteredRecettes = Recettes.filter((recette) =>
+    const filteredRecettes = recipes.filter((recette) =>
         recette.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 

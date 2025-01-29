@@ -4,13 +4,16 @@ import btnEdit from '../../assets/icons/edit.svg';
 import btnDelete from '../../assets/icons/delete.svg';
 
 import { useState, useEffect } from 'react';
-export default function Dashboard() {
-    const [recipes, setRecipes] = useState([]);
-    const [title, setTitle] = useState('');
-    const [difficulty, setDifficulty] = useState('');
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [link, setLink] = useState('');
+export default function Dashboard({ setRecipes }) {
+    const [recipe, setRecipe] = useState({
+        title: '',
+        difficulty: '',
+        category: '',
+        description: '',
+        link: '',
+    });
+
+    const [recipes, setLocalRecipes] = useState([]);
     const [editIndex, setEditIndex] = useState(null); // Pour suivre l'enregistrement en cours d'édition
 
     // Charger les données de localStorage lors du montage d'un composant
@@ -30,14 +33,13 @@ export default function Dashboard() {
     const handleAddRecipe = (e) => {
         e.preventDefault();
 
-        if (title && difficulty && category && description) {
-            const newRecipe = {
-                title,
-                difficulty,
-                category,
-                description,
-                link,
-            };
+        if (
+            recipe.title &&
+            recipe.difficulty &&
+            recipe.category &&
+            recipe.description
+        ) {
+            const newRecipe = { ...recipe };
 
             // Mettre à jour les recettes avec la nouvelle recette
             let updatedRecipes;
@@ -51,31 +53,32 @@ export default function Dashboard() {
                 updatedRecipes = [...recipes, newRecipe];
             }
 
-            setRecipes(updatedRecipes); // Mise à jour du statut
+            setLocalRecipes(updatedRecipes); // Mise à jour du statut local
             saveToLocalStorage(updatedRecipes); // Enregistrer dans localStorage
+            setRecipes(updatedRecipes); // Mettre à jour les recettes dans App.jsx
 
-            // Réinitialiser les valeurs des champs du formulaire
-            setTitle('');
-            setDifficulty('');
-            setCategory('');
-            setDescription('');
+            // Reset form
+            setRecipe({
+                title: '',
+                difficulty: '',
+                category: '',
+                description: '',
+                link: '',
+            });
         }
     };
 
     // Gestionnaire pour la suppression d'une recette
     const handleDeleteRecipe = (index) => {
         const updatedRecipes = recipes.filter((_, i) => i !== index);
+        setLocalRecipes(updatedRecipes); // Mise à jour du statut local
         setRecipes(updatedRecipes); // Mise à jour du statut
         saveToLocalStorage(updatedRecipes); // Enregistrer dans localStorage
     };
     // Gestionnaire pour la modification d'une recette
     const handleEditRecipe = (index) => {
-        const recipe = recipes[index];
-        setTitle(recipe.title);
-        setDifficulty(recipe.difficulty);
-        setCategory(recipe.category);
-        setDescription(recipe.description);
-        setLink(recipe.link);
+        const selectedRecipe = recipes[index];
+        setRecipes(selectedRecipe);
         setEditIndex(index); // Réglage de l'index de la recette modifiée
     };
 
@@ -90,8 +93,10 @@ export default function Dashboard() {
                         id='titre'
                         name='titre'
                         placeholder='Ex: Burger classique'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        value={recipe.title}
+                        onChange={(e) =>
+                            setRecipe({ ...recipe, title: e.target.value })
+                        }
                         required
                     />
                     <label htmlFor='difficulty'>Difficulté (1-5) : </label>
@@ -102,8 +107,13 @@ export default function Dashboard() {
                         placeholder='0'
                         min='1'
                         max='5'
-                        value={difficulty}
-                        onChange={(e) => setDifficulty(e.target.value)}
+                        value={recipe.difficulty}
+                        onChange={(e) =>
+                            setRecipe({
+                                ...recipe,
+                                difficulty: e.target.value,
+                            })
+                        }
                         required
                     />
                     <label htmlFor='category'>Catégorie : </label>
@@ -112,8 +122,10 @@ export default function Dashboard() {
                         id='category'
                         name='category'
                         placeholder='Ex: Burger'
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={recipe.category}
+                        onChange={(e) =>
+                            setRecipe({ ...recipe, category: e.target.value })
+                        }
                         required
                     />
                     <label htmlFor='description'>Description : </label>
@@ -122,8 +134,13 @@ export default function Dashboard() {
                         name='description'
                         rows='5'
                         placeholder='Décrivez votre recette ici...'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        value={recipe.description}
+                        onChange={(e) =>
+                            setRecipe({
+                                ...recipe,
+                                description: e.target.value,
+                            })
+                        }
                         required
                         maxLength='500'
                     />
@@ -153,7 +170,7 @@ export default function Dashboard() {
                 {recipes.length > 0 ? (
                     <section>
                         {recipes.map((recipe, index) => (
-                            <div className='wrapper'>
+                            <div className='wrapper' key={index}>
                                 <div
                                     className='all-recettes__conatiner'
                                     key={`${recipe.title}-${index}`}
