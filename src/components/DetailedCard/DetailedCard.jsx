@@ -1,3 +1,4 @@
+import imgDashboard from '../../assets/img/dashboard/recettes-du-monde.jpg';
 import './DetailedCard.css';
 export default function DetailedCard({ recette, onBack }) {
     return (
@@ -7,7 +8,7 @@ export default function DetailedCard({ recette, onBack }) {
             </button>
             <img
                 className='card__img'
-                src={recette.imageUrl}
+                src={recette.imageUrl || imgDashboard}
                 alt={recette.title}
             />
             <h1 className='card__title'>{recette.title}</h1>

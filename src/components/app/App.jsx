@@ -36,11 +36,6 @@ export default function App() {
         localStorage.setItem('recipes', JSON.stringify(recipes));
     }, [recipes]);
 
-    // Fonction permettant de mettre à jour la liste des recettes et de les sauvegarder
-    const updateRecipes = (newRecipes) => {
-        setRecipes(newRecipes);
-    };
-
     // Fonction pour afficher la page principale
     const showMain = () => {
         setView('main');

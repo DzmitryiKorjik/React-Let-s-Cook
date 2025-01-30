@@ -20,6 +20,9 @@ export default function Dashboard({ recipes, setRecipes }) {
     // État pour suivre l'index de la recette en cours d'édition
     const [editIndex, setEditIndex] = useState(null);
 
+    // État permettant de suivre le chargement de l'image
+    const [imageUploaded, setImageUploaded] = useState(false);
+
     // Charger les données depuis le localStorage lors du montage du composant
     useEffect(() => {
         const storedRecipes = localStorage.getItem('recipes');
@@ -93,6 +96,7 @@ export default function Dashboard({ recipes, setRecipes }) {
                     image: reader.result, // Stocke l'image en Base64
                 }));
             };
+            setImageUploaded(true);
         }
     };
 
@@ -104,10 +108,19 @@ export default function Dashboard({ recipes, setRecipes }) {
                     <input
                         type='file'
                         id='image'
-                        className='image'
+                        className='input__image'
                         accept='image/*'
                         onChange={(e) => handleImageUpload(e)}
                     />
+                    <button
+                        className='custom-file-button'
+                        onClick={() => document.getElementById('image').click()}
+                    >
+                        Ajouter image
+                    </button>
+                    {imageUploaded && (
+                        <p>L'image a été ajoutée avec succès !</p>
+                    )}
                     <label htmlFor='titre'>Titre : </label>
                     <input
                         type='text'

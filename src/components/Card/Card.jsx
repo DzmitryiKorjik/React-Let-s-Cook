@@ -1,9 +1,11 @@
+import imgDashboard from '../../assets/img/dashboard/recettes-du-monde.jpg';
+
 export default function Card({ recette, onClick }) {
     return (
         <div className='card'>
             <img
                 className='card__img'
-                src={recette.imageUrl}
+                src={recette.imageUrl || imgDashboard}
                 alt={recette.title}
             />
             <p className='card__category'>🏷️{recette.category}</p>
