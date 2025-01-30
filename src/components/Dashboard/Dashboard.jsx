@@ -2,34 +2,38 @@ import './Dashboard.css';
 
 import btnEdit from '../../assets/icons/edit.svg';
 import btnDelete from '../../assets/icons/delete.svg';
+import imgDashboard from '../../assets/img/dashboard/recettes-du-monde.jpg';
 
 import { useState, useEffect } from 'react';
-export default function Dashboard({ setRecipes }) {
+
+export default function Dashboard({ recipes, setRecipes }) {
+    // Définition de l'état pour stocker les informations d'une recette
     const [recipe, setRecipe] = useState({
         title: '',
         difficulty: '',
         category: '',
         description: '',
         link: '',
+        image: '',
     });
 
-    const [recipes, setLocalRecipes] = useState([]);
-    const [editIndex, setEditIndex] = useState(null); // Pour suivre l'enregistrement en cours d'édition
+    // État pour suivre l'index de la recette en cours d'édition
+    const [editIndex, setEditIndex] = useState(null);
 
-    // Charger les données de localStorage lors du montage d'un composant
+    // Charger les données depuis le localStorage lors du montage du composant
     useEffect(() => {
         const storedRecipes = localStorage.getItem('recipes');
+        console.log(
+            'Type de recipes:',
+            typeof recipes,
+            Array.isArray(recipes) ? '✅ Tableau' : '❌ Pas un tableau'
+        );
         if (storedRecipes) {
             setRecipes(JSON.parse(storedRecipes));
         }
     }, []);
 
-    // Enregistrer les données de localStorage lors de la démontage d'un composant
-    const saveToLocalStorage = (recipes) => {
-        localStorage.setItem('recipes', JSON.stringify(recipes));
-    };
-
-    // Gestionnaire pour l'ajout d'une recette
+    // Gestion de l'ajout et de la modification d'une recette
     const handleAddRecipe = (e) => {
         e.preventDefault();
 
@@ -39,47 +43,57 @@ export default function Dashboard({ setRecipes }) {
             recipe.category &&
             recipe.description
         ) {
-            const newRecipe = { ...recipe };
-
-            // Mettre à jour les recettes avec la nouvelle recette
-            let updatedRecipes;
-            if (editIndex !== null) {
-                // Remplacer la recette éditée par la nouvelle
-                updatedRecipes = [...recipes];
-                updatedRecipes[editIndex] = newRecipe;
-                setEditIndex(null);
-            } else {
-                // Ajouter une nouvelle recette
-                updatedRecipes = [...recipes, newRecipe];
+            // Ajouter l'image par défaut si elle est absente
+            if (!recipe.image) {
+                recipe.image = imgDashboard;
             }
 
-            setLocalRecipes(updatedRecipes); // Mise à jour du statut local
-            saveToLocalStorage(updatedRecipes); // Enregistrer dans localStorage
-            setRecipes(updatedRecipes); // Mettre à jour les recettes dans App.jsx
+            // Vérifier si recipes est bien un tableau
+            const newRecipes = Array.isArray(recipes) ? [...recipes] : [];
 
-            // Reset form
+            if (editIndex !== null) {
+                newRecipes[editIndex] = recipe; // Modification d'une recette existante
+                setEditIndex(null);
+            } else {
+                newRecipes.push(recipe); // Ajout d'une nouvelle recette
+            }
+
+            setRecipes(newRecipes); // Mise à jour de l'état global
             setRecipe({
                 title: '',
                 difficulty: '',
                 category: '',
                 description: '',
                 link: '',
+                image: '',
             });
         }
     };
 
-    // Gestionnaire pour la suppression d'une recette
+    // Gestion de la suppression d'une recette
     const handleDeleteRecipe = (index) => {
         const updatedRecipes = recipes.filter((_, i) => i !== index);
-        setLocalRecipes(updatedRecipes); // Mise à jour du statut local
-        setRecipes(updatedRecipes); // Mise à jour du statut
-        saveToLocalStorage(updatedRecipes); // Enregistrer dans localStorage
+        setRecipes(updatedRecipes);
     };
-    // Gestionnaire pour la modification d'une recette
+
+    // Gestion de l'édition d'une recette
     const handleEditRecipe = (index) => {
-        const selectedRecipe = recipes[index];
-        setRecipes(selectedRecipe);
-        setEditIndex(index); // Réglage de l'index de la recette modifiée
+        setRecipe(recipes[index]);
+        setEditIndex(index);
+    };
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0]; // Récupère le fichier sélectionné
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file); // Convertit le fichier en Base64
+            reader.onloadend = () => {
+                setRecipe((prevRecipe) => ({
+                    ...prevRecipe,
+                    image: reader.result, // Stocke l'image en Base64
+                }));
+            };
+        }
     };
 
     return (
@@ -87,6 +101,13 @@ export default function Dashboard({ setRecipes }) {
             <div className='new-recette'>
                 <h1 className='recette-title'>Ajouter une recette</h1>
                 <form onSubmit={handleAddRecipe}>
+                    <input
+                        type='file'
+                        id='image'
+                        className='image'
+                        accept='image/*'
+                        onChange={(e) => handleImageUpload(e)}
+                    />
                     <label htmlFor='titre'>Titre : </label>
                     <input
                         type='text'
@@ -152,13 +173,15 @@ export default function Dashboard({ setRecipes }) {
                         </button>
                         <button
                             type='reset'
-                            onClick={() => {
-                                setTitle('');
-                                setDifficulty('');
-                                setCategory('');
-                                setDescription('');
-                                setEditIndex(null); // Annuler le mode d'édition
-                            }}
+                            onClick={() =>
+                                setRecipe({
+                                    title: '',
+                                    difficulty: '',
+                                    category: '',
+                                    description: '',
+                                    link: '',
+                                })
+                            }
                         >
                             Réinitialiser
                         </button>
@@ -171,8 +194,13 @@ export default function Dashboard({ setRecipes }) {
                     <section>
                         {recipes.map((recipe, index) => (
                             <div className='wrapper' key={index}>
+                                <img
+                                    className='recipe-image'
+                                    src={recipe.image || imgDashboard} // Si pas d'image, on utilise imgDashboard
+                                    alt={recipe.title}
+                                />
                                 <div
-                                    className='all-recettes__conatiner'
+                                    className='all-recettes__container'
                                     key={`${recipe.title}-${index}`}
                                 >
                                     <h2 className='all-recettes__title'>
@@ -197,7 +225,7 @@ export default function Dashboard({ setRecipes }) {
                                         href='#'
                                         onClick={() => handleEditRecipe(index)}
                                     >
-                                        <img src={btnEdit} alt='edit' />
+                                        <img src={btnEdit} alt='Modifier' />
                                     </a>
                                     <a
                                         className='all-recettes__lien'
@@ -206,7 +234,7 @@ export default function Dashboard({ setRecipes }) {
                                             handleDeleteRecipe(index)
                                         }
                                     >
-                                        <img src={btnDelete} alt='delete' />
+                                        <img src={btnDelete} alt='Supprimer' />
                                     </a>
                                 </div>
                             </div>

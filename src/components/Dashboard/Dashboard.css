@@ -75,6 +75,18 @@
                 border-radius: 5px;
                 padding: 0 10px;
                 margin-top: 10px;
+                .all-recettes__container {
+                    margin-left: 120px;
+                    position: relative;
+                }
+                img.recipe-image {
+                    margin: 10px auto;
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
                 .all-recettes__title {
                     margin: 5px 0 10px 0;
                     font-size: 1.2rem;

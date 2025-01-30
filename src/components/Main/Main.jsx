@@ -25,9 +25,11 @@ export default function Main({
                 // Afficher la liste des recettes filtrées
                 <>
                     {filteredRecettes.length > 0 ? (
-                        filteredRecettes.map((recette) => (
+                        filteredRecettes.map((recette, index) => (
                             <Card
-                                key={recette.id}
+                                key={
+                                    recette.id ? recette.id : `recette-${index}`
+                                } // Génère un key unique si id est absent
                                 recette={recette}
                                 onClick={() => onSelectRecette(recette)} // Passer à la recette sélectionnée
                             />
