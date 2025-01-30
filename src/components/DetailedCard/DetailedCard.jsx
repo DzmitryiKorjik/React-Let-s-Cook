@@ -24,13 +24,29 @@ export default function DetailedCard({ recette, onBack }) {
                 <span>Ingredients : </span>
                 {Array.isArray(recette.ingredients)
                     ? recette.ingredients.join(', ')
-                    : recette.ingredients}
+                    : recette.ingredients || (
+                          <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Fugit ullam voluptas voluptatem magnam quas
+                              quidem aliquam in magni neque corrupti natus
+                              eveniet dicta at eum, porro optio quos
+                              reprehenderit laudantium!
+                          </p>
+                      )}
             </p>
             <p className='card__text'>
                 <span>Instructions : </span>
                 {Array.isArray(recette.instructions)
                     ? recette.instructions.join(', ')
-                    : recette.instructions}
+                    : recette.instructions || (
+                          <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Fugit ullam voluptas voluptatem magnam quas
+                              quidem aliquam in magni neque corrupti natus
+                              eveniet dicta at eum, porro optio quos
+                              reprehenderit laudantium!
+                          </p>
+                      )}
             </p>
         </div>
     );

@@ -38,8 +38,7 @@ header {
         }
         .header__add {
             display: flex;
-            align-items: center;
-            flex-direction: column;
+            margin: 0 auto;
             a {
                 img {
                     width: 30px;
@@ -83,5 +82,30 @@ header {
         color: var(--background-color);
         text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
         z-index: 2;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .header__link-img {
+        display: none;
+    }
+    header {
+        margin: 10px auto;
+        flex-direction: column;
+    }
+    .header__search {
+        margin: 10px auto;
+    }
+    .subheader > img {
+        max-height: 10vh;
+    }
+    h1 {
+        font-size: 2rem !important;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 899px) {
+    .header__link-img {
+        display: none;
     }
 }

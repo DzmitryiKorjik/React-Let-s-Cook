@@ -13,6 +13,8 @@ export default function Dashboard({ recipes, setRecipes }) {
         difficulty: '',
         category: '',
         description: '',
+        ingredients: '',
+        instructions: '',
         link: '',
         image: '',
     });
@@ -177,6 +179,38 @@ export default function Dashboard({ recipes, setRecipes }) {
                         }
                         required
                         maxLength='500'
+                    />
+                    <label htmlFor='description'>Ingredients : </label>
+                    <textarea
+                        id='ingredients'
+                        name='ingredients'
+                        rows='2'
+                        placeholder='Les ingrédients de votre recette sont ici...'
+                        value={recipe.ingredients}
+                        onChange={(e) =>
+                            setRecipe({
+                                ...recipe,
+                                ingredients: e.target.value,
+                            })
+                        }
+                        required
+                        maxLength='300'
+                    />
+                    <label htmlFor='description'>Instructions : </label>
+                    <textarea
+                        id='instructions'
+                        name='instructions'
+                        rows='2'
+                        placeholder='Les instructions de votre recette sont ici...'
+                        value={recipe.instructions}
+                        onChange={(e) =>
+                            setRecipe({
+                                ...recipe,
+                                instructions: e.target.value,
+                            })
+                        }
+                        required
+                        maxLength='300'
                     />
                     <div className='btn'>
                         <button type='submit'>

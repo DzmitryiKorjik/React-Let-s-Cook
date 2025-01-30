@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import logo from '../../assets/icons/logo.svg';
 import userIcon from '../../assets/icons/plus.svg';
-import banner from '../../assets/img/banner.jpg';
+import banner from '../../assets/img/banner.avif';
 
 export default function Header({
     view,
@@ -51,7 +51,7 @@ export default function Header({
                         >
                             <img src={userIcon} />
                         </a>
-                        <span>Ajouter recette</span>
+                        {/* <span>Ajouter recette</span> */}
                     </div>
                 </div>
             </header>
