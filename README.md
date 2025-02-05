@@ -7,10 +7,13 @@
 ## 🚀 Fonctionnalités
 
 -   Ajouter une nouvelle recette avec :
+    -   Image
     -   Titre
     -   Niveau de difficulté (1 à 5)
     -   Catégorie
     -   Description
+    -   Ingredients
+    -   Instructions
 -   Modifier une recette existante
 -   Supprimer une recette
 -   Les données sont sauvegardées localement grâce à `localStorage`, garantissant une persistance même après actualisation de la page.
@@ -20,6 +23,7 @@
 -   **React** : pour l'interface utilisateur
 -   **CSS** : pour le design et la mise en page
 -   **localStorage** : pour la sauvegarde des données
+-   **Base64** : Convertit le fichier en Base64 (Base64 est une méthode de codage des données binaires (par exemple, des images) en un format texte)
 
 ## 📦 Installation
 
