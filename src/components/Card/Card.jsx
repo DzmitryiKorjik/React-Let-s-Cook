@@ -1,6 +1,7 @@
 import imgDashboard from '../../assets/img/dashboard/recettes-du-monde.jpg';
 
 export default function Card({ recette, onClick }) {
+    // console.log('Recette url :', recette.imageUrl);
     return (
         <div className='card'>
             <img

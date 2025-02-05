@@ -16,7 +16,7 @@ export default function Dashboard({ recipes, setRecipes }) {
         ingredients: '',
         instructions: '',
         link: '',
-        image: '',
+        imageUrl: '',
     });
 
     // État pour suivre l'index de la recette en cours d'édition
@@ -28,11 +28,11 @@ export default function Dashboard({ recipes, setRecipes }) {
     // Charger les données depuis le localStorage lors du montage du composant
     useEffect(() => {
         const storedRecipes = localStorage.getItem('recipes');
-        console.log(
-            'Type de recipes:',
-            typeof recipes,
-            Array.isArray(recipes) ? '✅ Tableau' : '❌ Pas un tableau'
-        );
+        // console.log(
+        //     'Type de recipes:',
+        //     typeof recipes,
+        //     Array.isArray(recipes) ? '✅ Tableau' : '❌ Pas un tableau'
+        // );
         if (storedRecipes) {
             setRecipes(JSON.parse(storedRecipes));
         }
@@ -49,8 +49,8 @@ export default function Dashboard({ recipes, setRecipes }) {
             recipe.description
         ) {
             // Ajouter l'image par défaut si elle est absente
-            if (!recipe.image) {
-                recipe.image = imgDashboard;
+            if (!recipe.imageUrl) {
+                recipe.imageUrl = imgDashboard;
             }
 
             // Vérifier si recipes est bien un tableau
@@ -70,7 +70,7 @@ export default function Dashboard({ recipes, setRecipes }) {
                 category: '',
                 description: '',
                 link: '',
-                image: '',
+                imageUrl: '',
             });
         }
     };
@@ -95,7 +95,7 @@ export default function Dashboard({ recipes, setRecipes }) {
             reader.onloadend = () => {
                 setRecipe((prevRecipe) => ({
                     ...prevRecipe,
-                    image: reader.result, // Stocke l'image en Base64
+                    imageUrl: reader.result, // Stocke l'image en Base64
                 }));
             };
             setImageUploaded(true);
@@ -243,7 +243,7 @@ export default function Dashboard({ recipes, setRecipes }) {
                             <div className='wrapper' key={index}>
                                 <img
                                     className='recipe-image'
-                                    src={recipe.image || imgDashboard} // Si pas d'image, on utilise imgDashboard
+                                    src={recipe.imageUrl || imgDashboard} // Si pas d'image, on utilise imgDashboard
                                     alt={recipe.title}
                                 />
                                 <div
